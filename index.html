@@ -4,9 +4,121 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>رانـدر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    
+    /* الهيدر */
+    .site-header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+    nav a { margin-inline-start: 20px; color: var(--muted); text-decoration: none; font-size: .95rem; }
+    nav a:hover { color: var(--primary); }
+
+    /* القسم الرئيسي */
+    .hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 60px 0; text-align: center; }
+    .hero h1 { font-size: 2rem; margin-bottom: 12px; }
+    .hero p { opacity: .9; margin-bottom: 24px; }
+    .search-box input { width: 100%; max-width: 500px; padding: 14px 20px; border: none; border-radius: 999px; font-family: inherit; font-size: 1rem; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    /* الأقسام */
+    section { padding: 40px 20px; }
+    section h2 { font-size: 1.4rem; margin-bottom: 24px; }
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+    .category-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 16px; text-align: center; text-decoration: none; color: var(--text); transition: transform .15s, box-shadow .15s; }
+    .category-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .category-card .icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+
+    /* بطاقات الملفات */
+    .files-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .file-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .file-card h3 { font-size: 1.05rem; }
+    .file-card p { color: var(--muted); font-size: .9rem; flex-grow: 1; }
+    .file-card a { align-self: flex-start; background: var(--primary); color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 999px; font-size: .9rem; }
+    .file-card a:hover { background: var(--primary-dark); }
+
+    /* الفوتر */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px 0; margin-top: 40px; color: var(--muted); font-size: .9rem; }
+    .site-footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.4rem; }
+      nav a { margin-inline-start: 12px; font-size: .85rem; }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; text-align: center; padding: 50px; background-color: #f0f8ff;">
-  <h1>أهلاً بكم في موقعي التعليمي!</h1>
-  <p>هذه هي الصفحة الرئيسية الأولى. الموقع يعمل الآن.</p>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">موقعي التعليمي</a>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="#">من نحن</a>
+        <a href="#">اتصل بنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>كل ما تحتاجه لدراستك في مكان واحد</h1>
+        <p>ملازم، ملخصات، أسئلة وزارية، وفيديوهات شرح — مجانًا.</p>
+        <div class="search-box">
+          <input type="search" placeholder="ابحث عن ملزمة أو ملخص...">
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>الأقسام</h2>
+      <div class="category-grid">
+        <a href="#" class="category-card"><span class="icon">📚</span><span>ملازم</span></a>
+        <a href="#" class="category-card"><span class="icon">📝</span><span>ملخصات</span></a>
+        <a href="#" class="category-card"><span class="icon">❓</span><span>أسئلة وزارية</span></a>
+        <a href="#" class="category-card"><span class="icon">🎬</span><span>فيديوهات</span></a>
+        <a href="#" class="category-card"><span class="icon">📰</span><span>مقالات</span></a>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>أحدث الإضافات</h2>
+      <div class="files-grid">
+        
+        <article class="file-card">
+          <h3>ملزمة الرياضيات — السادس العلمي</h3>
+          <p>ملزمة شاملة تغطي الفصول كاملة مع أمثلة محلولة.</p>
+          <a href="#">تحميل</a>
+        </article>
+
+        <article class="file-card">
+          <h3>شرح الفيزياء — الفصل الأول</h3>
+          <p>فيديو شرح مبسط لأهم مفاهيم الفصل الأول.</p>
+          <a href="#">مشاهدة</a>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 موقعي التعليمي. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
