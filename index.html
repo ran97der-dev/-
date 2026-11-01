@@ -3,120 +3,221 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رانـدر</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>المنصة التعليمية العراقية | كل ما تحتاجه للدراسة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1e40af;
+      --primary: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-dark: #1e3a8a;
       --bg: #f8fafc;
       --surface: #ffffff;
-      --text: #1e293b;
+      --text: #0f172a;
       --muted: #64748b;
       --border: #e2e8f0;
-      --radius: 12px;
+      --radius: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    
-    /* الهيدر */
-    .site-header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-    .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
-    nav a { margin-inline-start: 20px; color: var(--muted); text-decoration: none; font-size: .95rem; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .logo svg { width: 28px; height: 28px; }
+    nav a { margin-inline-start: 24px; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
     nav a:hover { color: var(--primary); }
 
-    /* القسم الرئيسي */
-    .hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 60px 0; text-align: center; }
-    .hero h1 { font-size: 2rem; margin-bottom: 12px; }
-    .hero p { opacity: .9; margin-bottom: 24px; }
-    .search-box input { width: 100%; max-width: 500px; padding: 14px 20px; border: none; border-radius: 999px; font-family: inherit; font-size: 1rem; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    /* Hero */
+    .hero { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #fff; padding: 80px 0; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 32px; }
+    .search-box { display: flex; justify-content: center; max-width: 600px; margin: 0 auto; }
+    .search-box input { width: 100%; padding: 18px 24px; border: none; border-radius: 999px; font-family: inherit; font-size: 1.1rem; outline: none; box-shadow: var(--shadow-md); }
 
-    /* الأقسام */
-    section { padding: 40px 20px; }
-    section h2 { font-size: 1.4rem; margin-bottom: 24px; }
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
-    .category-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 16px; text-align: center; text-decoration: none; color: var(--text); transition: transform .15s, box-shadow .15s; }
-    .category-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
-    .category-card .icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+    /* Sections */
+    section { padding: 64px 0; }
+    .section-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 32px; color: var(--text); border-right: 4px solid var(--primary); padding-right: 16px; }
 
-    /* بطاقات الملفات */
-    .files-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .file-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
-    .file-card h3 { font-size: 1.05rem; }
-    .file-card p { color: var(--muted); font-size: .9rem; flex-grow: 1; }
-    .file-card a { align-self: flex-start; background: var(--primary); color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 999px; font-size: .9rem; }
-    .file-card a:hover { background: var(--primary-dark); }
+    /* Stages Grid (المراحل الدراسية) */
+    .stages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+    .stage-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; text-decoration: none; color: var(--text); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; }
+    .stage-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border-color: var(--primary); }
+    .stage-card svg { width: 48px; height: 48px; color: var(--primary); margin-bottom: 16px; }
+    .stage-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+    .stage-card p { color: var(--muted); font-size: 0.9rem; }
 
-    /* الفوتر */
-    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 24px 0; margin-top: 40px; color: var(--muted); font-size: .9rem; }
-    .site-footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    /* Subjects Grid (المواد) */
+    .subjects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+    .subject-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; text-decoration: none; color: var(--text); transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .subject-card:hover { background: var(--primary-light); border-color: var(--primary); }
+    .subject-card svg { width: 32px; height: 32px; color: var(--primary); }
+    .subject-card span { font-weight: 600; font-size: 0.95rem; }
+
+    /* Files Section */
+    .files-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .file-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 16px; transition: box-shadow 0.2s; }
+    .file-card:hover { box-shadow: var(--shadow-md); }
+    .file-type { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 6px 12px; border-radius: 999px; width: fit-content; }
+    .file-card h3 { font-size: 1.1rem; font-weight: 700; }
+    .file-card p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
+    .file-card .btn { display: inline-block; text-align: center; background: var(--primary); color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; transition: background 0.2s; }
+    .file-card .btn:hover { background: var(--primary-dark); }
+
+    /* Footer */
+    .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 0; margin-top: 64px; color: var(--muted); }
+    .site-footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.4rem; }
-      nav a { margin-inline-start: 12px; font-size: .85rem; }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.8rem; }
+      nav { display: none; }
+      .stages-grid, .files-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- الهيدر -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo">موقعي التعليمي</a>
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        المنصة التعليمية
+      </a>
       <nav>
-        <a href="index.html">الرئيسية</a>
-        <a href="#">من نحن</a>
+        <a href="#">الرئيسية</a>
+        <a href="#">المراحل الدراسية</a>
+        <a href="#">المواد</a>
         <a href="#">اتصل بنا</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- القسم الرئيسي والبحث -->
     <section class="hero">
       <div class="container">
-        <h1>كل ما تحتاجه لدراستك في مكان واحد</h1>
-        <p>ملازم، ملخصات، أسئلة وزارية، وفيديوهات شرح — مجانًا.</p>
+        <h1>أضخم منصة تعليمية للطلاب العراقيين</h1>
+        <p>ملازم، ملخصات، أسئلة وزارية، وفيديوهات شرح لجميع المراحل من الأول ابتدائي إلى السادس إعدادي.</p>
         <div class="search-box">
-          <input type="search" placeholder="ابحث عن ملزمة أو ملخص...">
+          <input type="search" placeholder="ابحث عن ملزمة، مادة، أو سؤال وزاري...">
         </div>
       </div>
     </section>
 
+    <!-- المراحل الدراسية -->
     <section class="container">
-      <h2>الأقسام</h2>
-      <div class="category-grid">
-        <a href="#" class="category-card"><span class="icon">📚</span><span>ملازم</span></a>
-        <a href="#" class="category-card"><span class="icon">📝</span><span>ملخصات</span></a>
-        <a href="#" class="category-card"><span class="icon">❓</span><span>أسئلة وزارية</span></a>
-        <a href="#" class="category-card"><span class="icon">🎬</span><span>فيديوهات</span></a>
-        <a href="#" class="category-card"><span class="icon">📰</span><span>مقالات</span></a>
+      <h2 class="section-title">المراحل الدراسية</h2>
+      <div class="stages-grid">
+        
+        <a href="#" class="stage-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          <h3>المرحلة الابتدائية</h3>
+          <p>من الصف الأول إلى السادس</p>
+        </a>
+
+        <a href="#" class="stage-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <h3>المرحلة المتوسطة</h3>
+          <p>من الأول إلى الثالث متوسط</p>
+        </a>
+
+        <a href="#" class="stage-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3>المرحلة الإعدادية</h3>
+          <p>الرابع، الخامس، السادس</p>
+        </a>
+
+        <a href="#" class="stage-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <h3>الجامعات والمعاهد</h3>
+          <p>قريباً.. ملازم الجامعات</p>
+        </a>
+
       </div>
     </section>
 
+    <!-- المواد الدراسية الشائعة -->
+    <section class="container" style="background: var(--surface); border-radius: var(--radius); padding: 48px;">
+      <h2 class="section-title">المواد الدراسية</h2>
+      <div class="subjects-grid">
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>الرياضيات</span>
+        </a>
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+          <span>اللغة العربية</span>
+        </a>
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>اللغة الإنجليزية</span>
+        </a>
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+          <span>الفيزياء</span>
+        </a>
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31"/><path d="M14 9.3V1.99"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>
+          <span>الكيمياء</span>
+        </a>
+        <a href="#" class="subject-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>الأحياء</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- أحدث الملفات -->
     <section class="container">
-      <h2>أحدث الإضافات</h2>
+      <h2 class="section-title">أحدث الإضافات</h2>
       <div class="files-grid">
         
         <article class="file-card">
-          <h3>ملزمة الرياضيات — السادس العلمي</h3>
-          <p>ملزمة شاملة تغطي الفصول كاملة مع أمثلة محلولة.</p>
-          <a href="#">تحميل</a>
+          <span class="file-type">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            ملف PDF
+          </span>
+          <h3>ملزمة الرياضيات الشاملة - السادس العلمي</h3>
+          <p>ملزمة تغطي كافة فصول المنهج مع حلول مفصلة للتمارين الوزارية.</p>
+          <a href="#" class="btn">تحميل الملف</a>
         </article>
 
         <article class="file-card">
-          <h3>شرح الفيزياء — الفصل الأول</h3>
-          <p>فيديو شرح مبسط لأهم مفاهيم الفصل الأول.</p>
-          <a href="#">مشاهدة</a>
+          <span class="file-type">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+            فيديو
+          </span>
+          <h3>شرح قواعد اللغة العربية - الثالث المتوسط</h3>
+          <p>فيديو مفصل لشرح قواعد اللغة العربية بأسلوب مبسط وسهل الحفظ.</p>
+          <a href="#" class="btn">مشاهدة الفيديو</a>
+        </article>
+
+        <article class="file-card">
+          <span class="file-type">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+            ملخص
+          </span>
+          <h3>ملخص الأحياء - الفصل الأول</h3>
+          <p>ملخص شامل لأهم النقاط في الفصل الأول مع رسومات توضيحية.</p>
+          <a href="#" class="btn">تحميل الملخص</a>
         </article>
 
       </div>
     </section>
   </main>
 
+  <!-- الفوتر -->
   <footer class="site-footer">
     <div class="container">
-      <p>© 2026 موقعي التعليمي. جميع الحقوق محفوظة.</p>
+      <p>© 2026 المنصة التعليمية العراقية. جميع الحقوق محفوظة.</p>
+      <nav style="margin: 0;">
+        <a href="#" style="margin: 0 10px;">سياسة الخصوصية</a>
+        <a href="#" style="margin: 0 10px;">شروط الاستخدام</a>
+      </nav>
     </div>
   </footer>
 
